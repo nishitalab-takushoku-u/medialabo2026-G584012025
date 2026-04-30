@@ -1,6 +1,20 @@
 *{
-    background-color: violet;
+    background-color: #ffdef7;
+
 }
 h1{
-    color: blue;
+    text-shadow: 5px 5px rgb(208, 3, 177);
+    font-weight: bold;
+
+}
+h2{
+    border-bottom: 2px solid rgb(255, 163, 163);
+    font-weight: bold;
+}
+
+div.zentai{
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-gap: 10px;
+	grid-auto-rows: 200px 200px
 }
