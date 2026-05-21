@@ -3,6 +3,7 @@ function greeting2(){
 	let shimei = i.value;
 	let aisatsu = 'こんにちは' + shimei +　'さん';
 	let p = document.querySelector('p#message');
+	
 	p.textContent = aisatsu;
 }
 b = document.querySelector('button#print');
