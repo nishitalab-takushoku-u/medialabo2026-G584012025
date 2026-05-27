@@ -8,32 +8,57 @@ console.log('答え（デバッグ用）: ' + kotae);
 let kaisu = 0;
 
 // そのほか，必要に応じて変数を宣言してもよい
-
+let suika=0;
 // ボタンを押した後の処理をする関数 hantei() の定義
 function hantei() {
-  let z = document.querySelector('input[name="opi"]');
-  let x = z.value;
-  let y = kaisu + '回目の予想:' + x;
-  let p2 = document.querySelector('p#message');
-  p2.textContent = y;
-}
-  b = document.querySelector('button#ans');
-  b = addEventListener('click', hantei); 
+  kaisu = Number(kaisu+1);
+  let yosokaisu = kaisu;
+  let om = document.querySelector('span#kaisu');
+  om.textContent = yosokaisu;
+
 
   // ここから: 予想回数を1増やして，span#kaisu 要素のテキストを更新
 
   // ここまで: 予想回数を1増やして，span#kaisu 要素のテキストを更新
   
   // ここから: テキストボックスに指定された数値を yoso に代入する
-let yoso;
+let oi = document.querySelector('input[name="opi"]');
+let oioi = oi.value;
+let huh = Number(oioi);
+let yoso2 = Number(huh);
+let result = document.querySelector('span#kaisu');
+result.textContent = yoso2;
   // ここまで: テキストボックスに指定された数値を yoso に代入する
   
   // ここから: 正解判定する
+
+if ( Number(kaisu)>=4 || Number(suika)===1){
+  let m = document.querySelector('p#result');
+  m.textContent = '答えは' + kotae + 'でした、すでにゲームは終わっています';
+}
+if ( Number(kaisu)===Number(kotae) && Number(suika!==1 )){
+  m.document.querySelector('p#result');
+  v=1;
+  m.textContent='正解です。おめでとう';
+}
+if ( Number(huh)!==Number(kotae) && Number(kaisu)===3){
+  m=document.querySelector('p#result');
+  m.textContent = 'まちがい。残念でした答えは' + kotae + 'です。';
+}
+if ( Number(kaisu)<3 && Number(kotae)>Number(huh)){
+  m=document.querySelector('p#result');
+  m.textContent = 'まちがい。答えはもうちょっと大きいよ';
+}
+if ( Number(kaisu)<3 && Number(kotae)<Number(huh)){
+  m = document.querySelector('p#result');
+}
+}
   // 　　　　  正解/不正解のときのメッセージを表示する
 
   // ここまで: 正解判定する
 
-
+let zebra = document.querySelector('button#ans');
+zebra.addEventListener('click', hantei);
 // ここから: ボタンを押した時のイベントハンドラとして hantei を登録
 
 // ここまで: ボタンを押した時のイベントハンドラとして hantei を登録
