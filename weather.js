@@ -7,31 +7,52 @@ function print(data) {
   console.log(data['main']['temp_min']);
   console.log(data['main']['temp_max']);
   console.log(data['wind']['speed']);;
+  console.log(data['name']);
 }
 
 // 課題5-1 の関数 printDom() はここに記述すること
-let MVP = document.body;
-MVP=addEventListener('click', printDom);
+let MVP = document.querySelector('button#henkouori');
+MVP.addEventListener('click', printDom);
 
 function printDom(data) {
-  let one = document.createElement('div', 'result');
-  let two = document.querySelector('#henkouori');
-  two.insertAdjacentElement('afterend', one);
-  let three = document.createElement('li');
-  three.textContent=data.coord.lon;
-  
+  let place = document.querySelector('button#henkouori');
+  let p = document.createElement('p');
+  place.insertAdjacentElement('afterend', p);
+  let li1 = document.createElement('li');
+  li1.textContent = "軽度：" + data['coord']['lon'];
+  p.insertAdjacentElement('beforeend', li1);
+  li2= document.createElement('li');
+  li2.textContent = "緯度：" + data['coord']['lat'];
+  p.insertAdjacentElement('beforeend', li2);
+  li3 = document.createElement('li');
+  li3.textContent = "天気：" + data['weather'][0]['description'];
+  p.insertAdjacentElement('beforeend', li3);
+  li4 = document.createElement('li');
+  li4.textContent = "最低気温：" + data['main']['temp_min'];
+  p.insertAdjacentElement('beforeend', li4);
+  li5 = document.createElement('li');
+  li5.textContent = "最高気温：" + data['main']['temp_min'];
+  p.insertAdjacentElement('beforeend', li5);
+  li6 = document.createElement('li');
+  li6.textContent = "風速：" + data['wind']['speed'];
+  p.insertAdjacentElement('beforeend', li6);
+  li6 = document.createElement('li');
+  li6.textContent = "都市名：" + data['name'];
+  p.insertAdjacentElement('beforeend', li6);
+  let remove = document.querySelector('button#henkouori');
+  remove.remove();
 }
 
 
 // 課題6-1 のイベントハンドラ登録処理は以下に記述
 
-let m = document.querySelector('#henkou1');
+let m = document.querySelector('#henkouori');
 m.addEventListener('click', sendRequest);
 
 
 // 課題6-1 のイベントハンドラ sendRequest() の定義
 function sendRequest() {
-  let url = 'https://www.nishita-lab.org/web-contents/jsons/openweather/2643743.json';
+  let url = 'https://www.nishita-lab.org/web-contents/jsons/openweather/' + num + '.json';
   axios.get(url)
         .then(showResult)   
         .catch(showError)   
@@ -40,6 +61,51 @@ function sendRequest() {
 }
 
 // 課題6-1: 通信が成功した時の処理は以下に記述
+
+pick = document.querySelector('label#santaro');
+pick = document.querySelector('select#select');
+let id = pick.value;
+if ( pick['value'] === "360630"){
+  id = '360630'
+}
+if ( pick['value'] === "360630"){
+  id = '360630'
+}
+if ( pick['value'] === "524901"){
+  id = '524901'
+}
+if ( pick['value'] === "993800"){
+  id = '993800'
+}
+if ( pick['value'] === "1816670"){
+  id = '1816670'
+}
+if ( pick['value'] === "1850147"){
+  id = '1850147'
+}
+if ( pick['value'] === "1880252"){
+  id = '1880252'
+}
+if ( pick['value'] === "2147714"){
+  id = '2147714'
+}
+if ( pick['value'] === "2643743"){
+  id = '2643743'
+}
+if ( pick['value'] === "2968815"){
+  id = '2968815'
+}
+if ( pick['value'] === "3451189"){
+  id = '3451189'
+}
+if ( pick['value'] === "5128581"){
+  id = '5128581'
+}
+if ( pick['value'] === "5368361"){
+  id = '5368361'
+}
+let num = Number(id);
+
 function showResult(resp) {
 let data = resp.data;
 
@@ -53,6 +119,8 @@ let data = resp.data;
 
     // data.x を出力
     console.log(data.x);
+
+    printDom(data);
 }
 
 // 課題6-1: 通信エラーが発生した時の処理
