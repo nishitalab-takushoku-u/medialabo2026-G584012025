@@ -15,6 +15,10 @@ let MVP = document.querySelector('button#henkouori');
 MVP.addEventListener('click', printDom);
 
 function printDom(data) {
+  let oldP = document.querySelector('p');
+  if (oldP) {
+    oldP.remove();
+  }
   let place = document.querySelector('button#henkouori');
   let p = document.createElement('p');
   place.insertAdjacentElement('afterend', p);
@@ -31,7 +35,7 @@ function printDom(data) {
   li4.textContent = "最低気温：" + data['main']['temp_min'];
   p.insertAdjacentElement('beforeend', li4);
   li5 = document.createElement('li');
-  li5.textContent = "最高気温：" + data['main']['temp_min'];
+  li5.textContent = "最高気温：" + data['main']['temp_max'];
   p.insertAdjacentElement('beforeend', li5);
   li6 = document.createElement('li');
   li6.textContent = "風速：" + data['wind']['speed'];
@@ -39,8 +43,6 @@ function printDom(data) {
   li6 = document.createElement('li');
   li6.textContent = "都市名：" + data['name'];
   p.insertAdjacentElement('beforeend', li6);
-  let remove = document.querySelector('button#henkouori');
-  remove.remove();
 }
 
 
@@ -52,17 +54,7 @@ m.addEventListener('click', sendRequest);
 
 // 課題6-1 のイベントハンドラ sendRequest() の定義
 function sendRequest() {
-  let url = 'https://www.nishita-lab.org/web-contents/jsons/openweather/' + num + '.json';
-  axios.get(url)
-        .then(showResult)   
-        .catch(showError)   
-        .then(finish); 
-/*function sendRequest()*/ 
-}
-
-// 課題6-1: 通信が成功した時の処理は以下に記述
-
-pick = document.querySelector('label#santaro');
+  pick = document.querySelector('label#santaro');
 pick = document.querySelector('select#select');
 let id = pick.value;
 if ( pick['value'] === "360630"){
@@ -105,6 +97,17 @@ if ( pick['value'] === "5368361"){
   id = '5368361'
 }
 let num = Number(id);
+  let url = 'https://www.nishita-lab.org/web-contents/jsons/openweather/' + num + '.json';
+  axios.get(url)
+        .then(showResult)   
+        .catch(showError)   
+        .then(finish); 
+/*function sendRequest()*/ 
+}
+
+// 課題6-1: 通信が成功した時の処理は以下に記述
+
+
 
 function showResult(resp) {
 let data = resp.data;
