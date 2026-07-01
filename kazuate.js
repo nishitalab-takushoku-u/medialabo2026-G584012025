@@ -11,7 +11,7 @@ let kaisu = 0;
 let suika=0;
 // ボタンを押した後の処理をする関数 hantei() の定義
 function hantei() {
-  if (suika === 1 || kaisu >= 3) {
+  if (suika === 1 || kaisu > 3) {
         let m = document.querySelector("p#result");
         m.textContent = "答えは " + kotae + " でした。すでにゲームは終わっています。";
         return;
